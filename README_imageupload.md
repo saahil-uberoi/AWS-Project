@@ -1,10 +1,9 @@
 # AWS-Project
-A2
-This function helping in invoking the image to s3
-this function can be tested using below test event
-Filename can be any name that needs to be saved in s3
-Body will have base64 encoded format of image to be uploaded
 
+This function helps in uploading the image to s3.
+This function can be tested using below test event in API gateway as below:
+(Filename can be any name that needs to be saved in s3 ,
+Body will have base64 encoded format of image to be uploaded)
 
 {
     "filename":"test520.png",
