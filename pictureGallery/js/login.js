@@ -44,6 +44,8 @@ submitButton.addEventListener("click", (e) => {
                 var accessToken = result.getAccessToken().getJwtToken();
                 console.log(accessToken);
                 window.location.href = '../landingpage.html';
+                localStorage.setItem("token", accessToken);
+                localStorage.setItem("username", emailForm.value);
                 alert("Successfully logged in to the system!");
             },
         
