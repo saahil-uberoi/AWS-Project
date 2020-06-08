@@ -1,10 +1,12 @@
 import { CognitoUser, CognitoAccessToken } from "amazon-cognito-identity-js";
-import { CognitoAuth } from "amazon-cognito-auth-js";
+import { CognitoAuth } from "amazon-cognito-auth-js";   
 
+const signoutButton = document.getElementById("signout-button");
 const pictures = document.querySelector(".picDiv");
 const upload = document.querySelector(".imgupload");
 let card;
 let name;
+
 
 //code to signup, it is still not clear if 
  //store the poolID and clientappId values
@@ -12,6 +14,7 @@ let name;
             UserPoolId: "us-east-1_xXtMpRhG2", // Your user pool id here
             ClientId: "7uhrmii1e87ldijan3gh23o7k9" // Your client id here
         };
+        
 
         //parse the normal poolData object as AWSCognito object
         var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
@@ -86,9 +89,41 @@ const uploadImage = async (e) => {
 document.querySelector(".uploadfile").addEventListener("change", uploadImage);
 
 //
-const save = () => {
-  window.location.reload();
+const toBase64 = file => new Promise((resolve, reject) => {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => resolve(reader.result);
+  reader.onerror = error => reject(error);
+});
+
+async function save() {
+  var file = document.getElementById('FileId').files[0]
+  var fileName = file.name;
+  var filebase64 = await toBase64(file);
+  var filebas64Data = filebase64.split(',')[1]
+  sendData = {
+    "filename": fileName,
+    "body": filebas64Data
+  };
+  $.ajax({
+    url:
+      "https://g807xi3tf2.execute-api.us-east-1.amazonaws.com/TestStage/imageupload",
+    type: "post",
+    data: JSON.stringify(sendData),
+    contentType: "application/json",
+    dataType: "json",
+    success: function (response) {
+      if (response != 0) {
+        console.log(response);
+        alert("success")
+      } else {
+        alert("file not uploaded");
+      }
+    },
+  });
+  // window.location.reload();
 };
+
 document.querySelector(".save").addEventListener("click", save);
 
 window.addEventListener("load", function (event) {
