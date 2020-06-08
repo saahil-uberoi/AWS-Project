@@ -1,5 +1,3 @@
-import { CognitoUser, CognitoAccessToken } from "amazon-cognito-identity-js";
-import { CognitoAuth } from "amazon-cognito-auth-js";   
 
 const signoutButton = document.getElementById("signout-button");
 const pictures = document.querySelector(".picDiv");
@@ -97,7 +95,7 @@ const toBase64 = file => new Promise((resolve, reject) => {
 });
 
 async function save() {
-  var file = document.getElementById('FileId').files[0]
+  var file = document.getElementById('FileId').files[0];
   var fileName = file.name;
   var filebase64 = await toBase64(file);
   var filebas64Data = filebase64.split(',')[1]
@@ -105,22 +103,19 @@ async function save() {
     "filename": fileName,
     "body": filebas64Data
   };
-  $.ajax({
-    url:
-      "https://g807xi3tf2.execute-api.us-east-1.amazonaws.com/TestStage/imageupload",
-    type: "post",
-    data: JSON.stringify(sendData),
-    contentType: "application/json",
-    dataType: "json",
-    success: function (response) {
-      if (response != 0) {
-        console.log(response);
-        alert("success")
-      } else {
-        alert("file not uploaded");
-      }
-    },
-  });
+  fetch("https://8jfhfumcs1.execute-api.us-east-1.amazonaws.com/prod/imageupload", {
+    method: 'POST',
+    body: JSON.stringify(sendData),
+    mode: 'no-cors'
+  })
+  .then((response) => response.text())
+  .then(result => {
+    alert("image has been successfully added!");
+    $('#exampleModal').modal('hide');
+  })
+  .catch((err) => {
+    console.log('Error: ', err);
+  })
   // window.location.reload();
 };
 
@@ -137,16 +132,41 @@ window.addEventListener("load", function (event) {
 //search function
 const search = async () => {
   let input = document.querySelector(".picSearch");
-  let filter = input.value.toUpperCase();
-  for (i = 0; i < name.length; i++) {
+  let filter = input.value;
+  sendData = {
+    "objects": filter 
+  };
+  /* $.ajax({
+    url:
+      "https://kvzce07oce.execute-api.us-east-1.amazonaws.com/prod/QueryHandler",
+    type: "GET",
+    data: JSON.stringify(sendData),
+    contentType: "application/json",
+    dataType: "json",
+    success: function (response) {
+      if (response != 0) {
+        console.log(response);
+        alert(links)
+      } else {
+        alert("File Not Found!");
+      }
+    },
+  }); */
+ /*  for (i = 0; i < name.length; i++) {
     let a = name[i].getElementsByTagName("h5")[0];
     let txtValue = a.textContent || a.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    if (txtValue.indexOf(filter) > -1) {
       name[i].style.display = "";
     } else {
       name[i].style.display = "none";
     }
-  }
+  } */
 };
+
+
+
+// window.location.reload();
+
+
 
 document.querySelector(".picSearch").addEventListener("keyup", search);
