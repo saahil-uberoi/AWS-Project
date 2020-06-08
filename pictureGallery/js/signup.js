@@ -22,8 +22,8 @@ submitButton.addEventListener("click", (e) => {
     else{
         //this variable will store the pool and client ID from the cognito service
         var poolData = {
-            UserPoolId: "us-east-1_xXtMpRhG2", 
-            ClientId: "7uhrmii1e87ldijan3gh23o7k9",
+            UserPoolId: "us-east-1_hnsrBJV2h", 
+            ClientId: "7t77m8pqo5k160jeko8416nou1",
         };
 
         //passing the user pool as an AmazonCognitoIdentity's object instance

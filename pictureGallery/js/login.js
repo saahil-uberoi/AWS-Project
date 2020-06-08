@@ -25,8 +25,8 @@ submitButton.addEventListener("click", (e) => {
 
         //store the poolID and clientappId values
         var poolData = {
-            UserPoolId: "us-east-1_xXtMpRhG2", // Your user pool id here
-            ClientId: "7uhrmii1e87ldijan3gh23o7k9" // Your client id here
+            UserPoolId: "us-east-1_hnsrBJV2h", // Your user pool id here
+            ClientId: "7t77m8pqo5k160jeko8416nou1" // Your client id here
         };
 
         //parse the normal poolData object as AWSCognito object
