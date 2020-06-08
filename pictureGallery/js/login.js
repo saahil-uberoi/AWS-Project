@@ -2,7 +2,7 @@
 emailForm = document.querySelector("#email");
 passwordForm = document.querySelector("#password1");
 submitButton = document.querySelector("#submit-button");
-
+facebookButton = document.querySelector("#facebook-button");
 
 //set listeners in here
 submitButton.addEventListener("click", (e) => {

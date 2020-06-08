@@ -142,6 +142,12 @@ nav .brand-logo {
   width: 100%;
   margin-top: 20px;
 }
+
+#facebook-button { 
+  width: 100%;
+  margin-top: 20px;
+}
+
 .btn-flat{
   background-color: #0069b4 !important 
 }
