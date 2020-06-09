@@ -27,7 +27,7 @@ let name;
 //localStorage.clear()
 
 //fetch picture from backend
-const getPictures = async (event) => {
+/* const getPictures = async (event) => {
   event.preventDefault();
   const get = await fetch(
     "https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json",
@@ -53,7 +53,7 @@ const getPictures = async (event) => {
   pictures.innerHTML = output;
 };
 
-document.addEventListener("DOMContentLoaded", getPictures);
+document.addEventListener("DOMContentLoaded", getPictures); */
 
 //upload picture function
 const uploadImage = async (e) => {
@@ -135,10 +135,35 @@ window.addEventListener("load", function (event) {
 const search = async () => {
   let input = document.querySelector(".picSearch");
   let filter = input.value;
-  sendData = {
-    "objects": filter 
-  };
-  /* $.ajax({
+  let queryString = filter.split(",");
+  let counter = 1;
+  let stringTag = "";
+  for (i = 0; i < queryString.length; i++){
+    let parameters = `tag${counter}=`;
+    if (i === queryString.length-1)
+    {
+      stringTag = stringTag + parameters + queryString[i];
+      counter++; 
+    }
+    else{
+      stringTag = stringTag + parameters + queryString[i] + "&";
+      counter++;
+    }
+    
+  }
+  console.log(stringTag);
+  let url = `https://kvzce07oce.execute-api.us-east-1.amazonaws.com/prod/QueryHandler?${stringTag}`
+  let response = await fetch(url);
+  let result = await response.json();
+  console.log(result);
+
+  /*
+  let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
+let response = await fetch(url);
+
+let commits = await response.json();*/ 
+  /*https://kvzce07oce.execute-api.us-east-1.amazonaws.com/prod/QueryHandler 
+  $.ajax({
     url:
       "https://kvzce07oce.execute-api.us-east-1.amazonaws.com/prod/QueryHandler",
     type: "GET",
