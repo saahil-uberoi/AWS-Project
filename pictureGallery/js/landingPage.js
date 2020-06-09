@@ -122,11 +122,13 @@ async function save() {
 document.querySelector(".save").addEventListener("click", save);
 
 window.addEventListener("load", function (event) {
-  card = document.getElementById("pic");
-  name = card.getElementsByTagName("div");
+    card = document.getElementById("pic");
+    name = card.getElementsByTagName("div");
 
-  //test the jwt token on load
-  console.log(localStorage.getItem("token"));
+    //test the jwt token on load
+    console.log(localStorage.getItem("token"));
+
+    //check if token is not in the local storage, will be redirected to the login page
 });
 
 //search function

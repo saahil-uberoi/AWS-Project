@@ -17,6 +17,12 @@
     />
   </head>
   <body>
+    <script type='text/javascript'>
+      if (this.localStorage.getItem("token") === null){
+        alert("User is not signed in! redirecting to the login page!");
+        window.location.href = '../login.html';
+      }
+      </script>
     <nav class="navbar navbar-light justify-content-between" style="background-color:#0069b4">
       <a class="navbar-brand text-white mr-auto">Picture Gallery</a>
       <span
