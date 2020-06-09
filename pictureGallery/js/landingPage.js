@@ -1,4 +1,3 @@
-
 const signoutButton = document.getElementById("signout-button");
 const pictures = document.querySelector(".picDiv");
 const upload = document.querySelector(".imgupload");
@@ -99,14 +98,19 @@ async function save() {
   var fileName = file.name;
   var filebase64 = await toBase64(file);
   var filebas64Data = filebase64.split(',')[1]
+  const token =  `${localStorage.getItem("token")}`;
+  console.log(token);
   sendData = {
     "filename": fileName,
     "body": filebas64Data
   };
   fetch("https://8jfhfumcs1.execute-api.us-east-1.amazonaws.com/prod/imageupload", {
     method: 'POST',
+    headers: {
+      'Authorization': token,
+    },
     body: JSON.stringify(sendData),
-    mode: 'no-cors'
+    mode: 'cors',
   })
   .then((response) => response.text())
   .then(result => {
@@ -152,42 +156,21 @@ const search = async () => {
     
   }
   console.log(stringTag);
-  let url = `https://kvzce07oce.execute-api.us-east-1.amazonaws.com/prod/QueryHandler?${stringTag}`
-  let response = await fetch(url);
-  let result = await response.json();
-  console.log(result);
-
-  /*
-  let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
-let response = await fetch(url);
-
-let commits = await response.json();*/ 
-  /*https://kvzce07oce.execute-api.us-east-1.amazonaws.com/prod/QueryHandler 
-  $.ajax({
-    url:
-      "https://kvzce07oce.execute-api.us-east-1.amazonaws.com/prod/QueryHandler",
-    type: "GET",
-    data: JSON.stringify(sendData),
-    contentType: "application/json",
-    dataType: "json",
-    success: function (response) {
-      if (response != 0) {
-        console.log(response);
-        alert(links)
-      } else {
-        alert("File Not Found!");
-      }
+  const token =  `${localStorage.getItem("token")}`;
+  await fetch(` https://kvzce07oce.execute-api.us-east-1.amazonaws.com/prod/QueryHandler?${stringTag}`, {
+    method: 'GET',
+    headers: {
+      'Authorization': token,
     },
-  }); */
- /*  for (i = 0; i < name.length; i++) {
-    let a = name[i].getElementsByTagName("h5")[0];
-    let txtValue = a.textContent || a.innerText;
-    if (txtValue.indexOf(filter) > -1) {
-      name[i].style.display = "";
-    } else {
-      name[i].style.display = "none";
-    }
-  } */
+    mode: 'cors',
+  })
+  .then((response) => response.json())
+  .then(result => {
+    console.log(result);
+  })
+  .catch((err) => {
+    console.log('Error: ', err);
+  })
 };
 
 

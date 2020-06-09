@@ -41,10 +41,10 @@ submitButton.addEventListener("click", (e) => {
         //authenticate user by using userData values above
         cognitoUser.authenticateUser(authenticationDetails, {
             onSuccess: function(result) {
-                var accessToken = result.getAccessToken().getJwtToken();
-                console.log(accessToken);
+                var idToken = result.getIdToken().getJwtToken();
+                console.log(idToken);
                 window.location.href = '../landingpage.html';
-                localStorage.setItem("token", accessToken);
+                localStorage.setItem("token", idToken);
                 localStorage.setItem("username", emailForm.value);
                 alert("Successfully logged in to the system!");
             },
