@@ -54,6 +54,12 @@ let name;
 
 document.addEventListener("DOMContentLoaded", getPictures); */
 
+//signout event listeners
+signoutButton.addEventListener('click', () => {
+  console.log("ngentot!");
+  window.location.href = '../login.html';
+})
+
 //upload picture function
 const uploadImage = async (e) => {
   const file = e.target.files[0];
