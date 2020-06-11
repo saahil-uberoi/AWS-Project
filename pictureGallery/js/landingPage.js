@@ -55,8 +55,23 @@ let name;
 document.addEventListener("DOMContentLoaded", getPictures); */
 
 //signout event listeners
-signoutButton.addEventListener('click', () => {
-  console.log("ngentot!");
+signoutButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  var poolData = {
+          UserPoolId: "us-east-1_hnsrBJV2h", // Your user pool id here
+          ClientId: "7t77m8pqo5k160jeko8416nou1" // Your client id here
+      };
+        
+    //parse the normal poolData object as AWSCognito object
+  var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+
+  var userData = {
+      Username: localStorage.getItem("username"),
+      Pool: userPool
+  };
+  var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData); 
+  cognitoUser.signOut();
+  localStorage.clear();
   window.location.href = '../login.html';
 })
 
@@ -143,6 +158,7 @@ window.addEventListener("load", function (event) {
 
 //search function
 const search = async () => {
+  $('#pic').html(`<p> Searching....</p>`);
   let input = document.querySelector(".picSearch");
   let filter = input.value;
   let queryString = filter.split(",");
@@ -172,6 +188,14 @@ const search = async () => {
   })
   .then((response) => response.json())
   .then(result => {
+    if(result.links.length>0)
+    {
+      let linksUrl = '';
+      result.links.forEach((link)=>{
+        linksUrl += `<a href="${link}" target="_blank">${link}</a>`;
+      });
+      $('#pic').html(linksUrl);
+    }
     console.log(result);
   })
   .catch((err) => {
