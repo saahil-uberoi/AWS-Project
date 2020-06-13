@@ -30,6 +30,7 @@
         data-toggle="modal"
         data-target="#exampleModal"
         onMouseOver="this.style.cursor='pointer'"
+        style="display:flex;margin-top:.8rem"
       >
         <i class="fas fa-upload mt-1 text-white"></i>
         <p class="font-weight-bold text-white">Upload Image</p>
@@ -45,7 +46,12 @@
       <button id="signout-button" style="border:none; height: 2.3rem; background-color:rgb(194, 132, 18); font-weight:700; color: #ffffff;">Sign out</button>
     </nav>
 
-    <div class="row picDiv mt-5 ml-1 mr-1" id="pic"></div>
+    <div id="pic" style="margin-top:2rem; width:80%; margin:auto">
+      <div id="image-placeholder" style="width:35%; padding-top:20vh; margin:auto">
+        <img src="img/gallery.png" alt="image-icon" style="opacity:.2; display:block; margin: auto;"/>
+        <p style="width:100%; margin:auto; font-weight:700; font-size: 1.8rem; opacity: 0.4;">Welcome to the Tagstore!</p>
+      </div>
+    </div>
     <div
       class="modal fade"
       id="exampleModal"

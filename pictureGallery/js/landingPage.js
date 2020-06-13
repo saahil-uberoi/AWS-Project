@@ -158,7 +158,6 @@ window.addEventListener("load", function (event) {
 
 //search function
 const search = async () => {
-  $('#pic').html(`<p> Searching....</p>`);
   let input = document.querySelector(".picSearch");
   let filter = input.value;
   let queryString = filter.split(",");
@@ -179,7 +178,7 @@ const search = async () => {
   }
   console.log(stringTag);
   const token =  `${localStorage.getItem("token")}`;
-  await fetch(` https://kvzce07oce.execute-api.us-east-1.amazonaws.com/prod/QueryHandler?${stringTag}`, {
+  await fetch(`https://kvzce07oce.execute-api.us-east-1.amazonaws.com/prod/QueryHandler?${stringTag}`, {
     method: 'GET',
     headers: {
       'Authorization': token,
@@ -192,7 +191,9 @@ const search = async () => {
     {
       let linksUrl = '';
       result.links.forEach((link)=>{
-        linksUrl += `<a href="${link}" target="_blank">${link}</a>`;
+        linksUrl += `<div class="result" style="margin-top: 2rem; width: 90%; margin:2rem auto; display:flex; background-color:#e0d0a4;
+        border-radius:5px; justify-content:space-between;"><p style="padding-top:7rem; padding-left:1rem; font-size:1rem;"><a href="${link}" target="_blank">${link}</a></p>
+        <div class="result-image" style="padding:1.5rem 1rem;"><img src="${link}" width="230" height="230"/></div></div>`;
       });
       $('#pic').html(linksUrl);
     }
