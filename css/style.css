@@ -1,0 +1,214 @@
+.consent-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.9);
+  z-index: 10;
+}
+
+.consent-overlay .box {
+  background-color: #fff;
+  max-width: 300px;
+  margin: 200px auto 0;
+  padding: 60px 20px 80px;
+}
+.tag{
+    color: #0069b4 !important
+}
+
+[type=checkbox].filled-in:checked + span:not(.lever):after {
+top: 0;
+width: 20px;
+height: 20px;
+border: 2px solid #0069b4;
+background-color: #0069b4;
+z-index: 0;
+}
+
+.ok-consent {
+  float: right;
+  margin-top: 20px;
+}
+
+/*Main page*/
+#main-nav {
+  background-color: #0069b4
+  ;
+  max-height: 200px;
+}
+.remove_red_eye{
+    position:absolute;
+    margin-left: 400px !important;
+    margin-top: 15px;
+}
+.title{
+    margin-left: 22%;
+    font-size: 25px;
+    font-weight: 500;
+ }
+ .welcome-title{
+     margin-left: 27%;
+     font-size: 25px;
+     font-weight: 500
+ }
+
+nav .brand-logo {
+  height: 80%;
+  margin-bottom: 20px !important;
+  margin-top: 5px !important;
+  width: 4% !important;
+}
+#emai{
+    display: none;
+    color: red
+}
+
+
+#err1{
+  display: none;
+  color: red
+}
+#err2{
+  display: none;
+  color:red
+}
+/*Wrapper for the whole signup area*/
+.signup {
+  max-width: 460px;
+  margin: 10px auto 0;
+  padding: 10px;
+}
+.social-login {
+  background-color: #f4f4f4;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.social-login .text {
+  font-size: 1.2rem;
+  color: #797979;
+}
+
+.social-login .provider {
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  cursor: pointer;
+}
+.social-login .facebook {
+  background-image: url('../img/facbook.png');
+  margin-left: auto;
+}
+.social-login .google {
+  background-image: url('../img/google.png');
+  margin-left: 10px;
+}
+
+
+.separator {
+  display: flex;
+  align-items: center;
+  margin: 0 20px -20px 20px;
+}
+
+.separator .stick {
+  flex: 1;
+  background-color: #cecece;
+  width: 100%;
+  height: 1px;
+}
+
+.separator .or {
+  flex: 0;
+  padding: 20px;
+  color: gray;
+}
+
+#terms {
+  margin-top: 10px;
+}
+
+/*Text near chckboxes*/
+#terms span,
+#consent span {
+  line-height: 1.2;
+}
+
+#submit-button {
+  background-color: #0069b4 !important; 
+  width: 100%;
+  margin-top: 20px;
+}
+
+#facebook-button { 
+  width: 100%;
+  margin-top: 20px;
+}
+
+.btn-flat{
+  background-color: #0069b4 !important 
+}
+
+
+.input-field .prefix.active{
+  color: #0069b4;
+}
+.input-field :focus{
+    border-bottom: 1px solid #0069b4 !important;
+    box-shadow: 0 1px 0 0 #0069b4 !important
+}
+.input-field :focus + label{
+    color: #0069b4 !important
+}
+
+
+/*Errors*/
+.helper-text.server-error {
+  color: #f44336 !important;
+}
+
+/*Show or hide the errors according to server response*/
+#email-error {
+  display: none;
+}
+
+#password-error {
+  display: none;
+}
+
+.reset-password-header {
+  margin-bottom: 3rem;
+}
+
+/*Materialize color overrides*/
+
+.select-wrapper input.select-dropdown {
+  color: darkgrey;
+}
+
+.dropdown-content li>a, .dropdown-content li>span {
+  color: #000 !important;
+}
+
+@media screen and (max-width: 426px) {
+  .remove_red_eye{
+    position:absolute;
+    margin-left: 320px !important;
+    margin-top: 15px;
+}
+nav .brand-logo {
+  height: 80%;
+  margin-bottom: 20px !important;
+  margin-top: 5px !important;
+  width: 20% !important;
+}
+.title{
+  margin-left: 13%;
+  font-size: 25px;
+  font-weight: 500;
+}
+  }
