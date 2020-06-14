@@ -72,7 +72,7 @@ signoutButton.addEventListener('click', (e) => {
   var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData); 
   cognitoUser.signOut();
   localStorage.clear();
-  window.location.href = '../login.html';
+  window.location.href = '../index.html';
 })
 
 //upload picture function
